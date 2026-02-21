@@ -1,10 +1,26 @@
 // Create a function called removeBetween that removes all elements between two unique elements
 // Make sure to implement the Stack principle (LIFO)
 
-const Stack = require('../lib/Stack');
+const Stack = require("../lib/Stack");
 
 function removeBetween(stack, a, b) {
-  // your code here
+  const temp = new Stack();
+
+  while (!stack.isEmpty()) {
+    temp.push(stack.pop());
+  }
+
+  let skipping = false;
+  while (!temp.isEmpty()) {
+    const item = temp.pop();
+    if (item === a || item === b) {
+      stack.push(item);
+      skipping = item === a;
+      if (item === b) skipping = false;
+    } else if (!skipping) {
+      stack.push(item);
+    }
+  }
 }
 
 const fruits = new Stack();

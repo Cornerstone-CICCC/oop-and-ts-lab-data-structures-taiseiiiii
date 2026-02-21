@@ -2,10 +2,20 @@
 // A palindrome reads the same forwards and backwards (e.g., 1 2 3 2 1)
 // Make sure to implement the Queue principle (FIFO)
 
-const Queue = require('../lib/Queue');
+const Queue = require("../lib/Queue");
 
 function isPalindrome(queue) {
-  // your code here
+  const arr = [];
+  while (!queue.isEmpty()) {
+    arr.push(queue.dequeue());
+  }
+
+  for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+    if (arr[i] !== arr[arr.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 const queue = new Queue();

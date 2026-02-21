@@ -4,7 +4,26 @@
 const DLL = require('../lib/DLL');
 
 function deleteAllNodesWithValue(list, value) {
-  // your code here
+  let current = list.getHead();
+
+  while (current !== null) {
+    if (current.data === value) {
+      if (current.prev) {
+        current.prev.next = current.next;
+      } else {
+        list.setHead(current.next);
+      }
+
+      if (current.next) {
+        current.next.prev = current.prev;
+      } else {
+        list.setTail(current.prev);
+      }
+
+      list.setSize(list.length() - 1);
+    }
+    current = current.next;
+  }
 }
 
 const list = new DLL();
